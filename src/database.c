@@ -1,0 +1,242 @@
+/**
+ *  This file is part of SVS.
+ *
+ *  SVS is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  SVS is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with SVS.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <glib.h>
+#include "database.h"
+#include "config.h"
+
+static struct config *conf = NULL;
+
+MYSQL papers_conn;
+MYSQL svs_conn;
+
+
+
+int db_init(void)
+{
+    conf = get_config();
+
+    printf ("** BD: conexao **\n");
+
+    if (conf->event_evaluation == 0) {
+        mysql_init(&papers_conn);
+        papers_conn.options.connect_timeout=3;
+        papers_conn.options.read_timeout=5;
+        if ( mysql_real_connect(&papers_conn, conf->papers_server, conf->papers_user, conf->papers_pass, conf->papers_db, 0, NULL, 0) ) {
+            printf(" - Conectado no bd %s com sucesso!\n", conf->papers_db);
+        } else {
+            fprintf(stderr, " - Erro ao se conectar ao BD %s no servidor %s\n", conf->papers_db, conf->papers_server);
+            fprintf(stderr, " - Erro %d : %s\n", mysql_errno(&papers_conn), mysql_error(&papers_conn));
+            exit(1);
+        }
+    }
+
+    mysql_init(&svs_conn);
+    svs_conn.options.connect_timeout=3;
+    svs_conn.options.read_timeout=5;
+    if ( mysql_real_connect(&svs_conn, conf->svs_server, conf->svs_user, conf->svs_pass, conf->svs_db, 0, NULL, 0) ) {
+        printf(" - Conectado no bd %s com sucesso!\n", conf->svs_db);
+    } else {
+        fprintf(stderr, " - Erro ao se conectar ao BD %s no servidor %s\n", conf->svs_db, conf->svs_server);
+        fprintf(stderr, " - Erro %d : %s\n", mysql_errno(&svs_conn), mysql_error(&svs_conn));
+        exit(1);
+    }
+
+    return 0;
+}
+
+
+
+struct paper_info *db_get_paper_info(void){
+    MYSQL_RES *result;
+    MYSQL_ROW lines;
+    MYSQL_FIELD *fields;
+    char query[2000];
+    int status;
+    struct paper_info *curr_info = NULL;
+
+    if (mysql_stat(&papers_conn) != NULL) {
+        sprintf(query, 
+                    "SELECT \
+                    grade.proposta, pessoas.cod, \
+                    pessoas.nome, propostas.titulo \
+                    FROM grade \
+                    INNER JOIN horarios ON grade.horario=horarios.numero \
+                    INNER JOIN salas ON grade.sala=salas.numero \
+                    INNER JOIN dias ON grade.dia=dias.numero \
+                    INNER JOIN propostas ON grade.proposta=propostas.cod \
+                    INNER JOIN pessoas ON propostas.pessoa=pessoas.cod \
+                    WHERE TIME_TO_SEC(horarios.final)+1200>=TIME_TO_SEC(CURRENT_TIME()) \
+                    AND TIME_TO_SEC(horarios.final)+1200<TIME_TO_SEC(CURRENT_TIME())+3600 \
+                    AND grade.sala='%d' \
+                    AND dias.descricao=DATE_FORMAT(CURRENT_DATE(),\"%%d/%%m/%%Y\")", conf->room);
+
+        status = mysql_query(&papers_conn, query);
+        /* fprintf(stderr, "[ %s ]\n", query); */
+        if (status != 0) {
+            fprintf(stderr," [%s - %d] Erro: %s\n", __FUNCTION__, __LINE__,mysql_error(&papers_conn));
+            /* mysql restart */
+            db_close();
+            sleep(1);
+            db_init();
+        } else {
+            result = mysql_store_result(&papers_conn);
+            if (result){
+                fields = mysql_fetch_fields(result);
+                if ((lines=mysql_fetch_row(result)) != NULL) {
+                    /* fprintf(stderr, "[%s] Existe dados MySQL\n", __FUNCTION__); */
+                    curr_info = malloc(sizeof(struct paper_info));
+                    if (curr_info != NULL) {
+                        /* fprintf(stderr, "[%s] Atribui dados na estrutura\n", __FUNCTION__); */
+                        curr_info->paper = atoi(lines[0]);
+                        curr_info->person = atoi(lines[1]);
+                        curr_info->person_name = g_strdup(lines[2]);
+                        curr_info->paper_name = g_strdup(lines[3]);
+                    }
+                }
+                mysql_free_result(result);
+            }
+        }
+    } else {
+        fprintf(stderr," [%s - %d] Erro: %s\n", __FUNCTION__, __LINE__,mysql_error(&papers_conn));
+        return NULL;
+    }
+    
+    return curr_info;
+}
+
+void db_close(void)
+{
+    fprintf(stderr," [%s - %d] papers_conn.server_status(%d) papers_conn.server_status(%d)\n", __FUNCTION__, __LINE__,
+                                                                    papers_conn.server_status, svs_conn.server_status);
+
+    if (papers_conn.server_status != 0) {
+	    if (mysql_stat(&papers_conn) != NULL) {
+            mysql_close(&papers_conn);
+	    }
+    }
+
+    if (svs_conn.server_status != 0) {
+	    if (mysql_stat(&svs_conn) != NULL){
+            mysql_close(&svs_conn);
+        }
+    }
+
+}
+
+
+
+
+struct room_info *db_get_room_info(int room)
+{
+    MYSQL_RES *result;
+    MYSQL_ROW lines;
+    MYSQL_FIELD *fields;
+    char query[2000];
+    int status;
+    struct room_info *r_info = NULL;
+
+    r_info = g_new0(struct room_info, 1);
+    if (r_info == NULL) {
+        fprintf(stderr,"i [%s] - ERRO!! r_info = NULL \n", __FUNCTION__);
+        exit(1);
+    }
+
+    if (mysql_stat(&papers_conn) != NULL) {
+        sprintf(query, "SELECT descricao FROM salas WHERE numero=%d", room);
+        status = mysql_query(&papers_conn, query);
+        if (status != 0) {
+            fprintf(stderr," - Erro: %s\n",mysql_error(&papers_conn));
+            /* mysel restart */
+            db_close();
+            sleep(1);
+            db_init();
+        } else {
+            result = mysql_store_result(&papers_conn);
+            if (result){
+                fields = mysql_fetch_fields(result);
+                if ((lines=mysql_fetch_row(result)) != NULL) {
+                    r_info->room = room;
+                    r_info->room_name = g_strdup(lines[0]);
+                } else {
+                    goto err;
+                }
+                mysql_free_result(result);
+            } else {
+                goto err;
+            }
+        }
+    }
+
+    return r_info;
+err:
+    fprintf(stderr,"i [%s] - Nao foi possivel obter o nome da sala do BD\n", __FUNCTION__);
+    exit(1);
+}
+
+
+
+int write_file(char *buff)
+{
+    FILE *arq = NULL;
+
+    arq = fopen("/tmp/svs_sql_err.txt", "a+");
+    if(arq == NULL) {
+        return -1;
+    }
+
+    if(buff == NULL) {
+        return -1;
+    }
+
+    fprintf(arq, "%s\n", buff);
+
+    fclose(arq);
+    return 0;
+}
+
+
+
+
+void db_write_feedback(struct feedback *vote){
+    char *query = NULL;
+    int status;
+
+    query = g_strdup_printf("INSERT INTO feedback(room,paper,button) values(%d, %d, %d)", vote->room, vote->paper, vote->button);
+
+    if (conf->test_mode == 0) {
+        if (mysql_stat(&svs_conn) != NULL) {
+            status = mysql_query(&svs_conn, query);
+            if (status != 0) {
+                fprintf(stderr," [%s] - Erro: %s\n", __FUNCTION__, mysql_error(&svs_conn));
+                goto write_err;
+            }
+        } else {
+            goto write_err;
+        }
+    } else {
+        fprintf(stderr,"TEST MODE: Voto nao sera computado\n%s\n", query);
+    }
+
+    g_free(query);
+    return;
+
+write_err:
+    write_file(query);
+    g_free(query);
+}
+

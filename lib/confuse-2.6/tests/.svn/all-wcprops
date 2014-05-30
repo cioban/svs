@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/Makefile.in
+END
+suite_dup.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/suite_dup.c
+END
+suite_validate.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/suite_validate.c
+END
+a.conf
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/a.conf
+END
+list_plus_syntax.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/list_plus_syntax.c
+END
+suite_list.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/suite_list.c
+END
+check_confuse.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/check_confuse.h
+END
+suite_func.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/suite_func.c
+END
+b.conf
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/b.conf
+END
+section_title_dupes.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/section_title_dupes.c
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/Makefile.am
+END
+single_title_sections.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/single_title_sections.c
+END
+suite_single.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/suite_single.c
+END
+quote_before_print.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/tests/quote_before_print.c
+END

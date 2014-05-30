@@ -1,0 +1,15 @@
+##########
+# SVS - Sistema de votacao de palestras SoLiSC
+# CHANGELOG
+26/11/2009 - v0.4
+    - Correcao do BUG de nao mostar o info_clean na tela GTK
+
+23/11/2009
+    - Adicionada o event_evaluation onde sera possivel avaliar o evento como um todo
+
+20/11/2009
+    - Adicionado o modo teste, onde sera possivel testar o hardware e alguma conexao simples no BD
+    - Adicionada tentativa de reconexao no mysql quando um erro éencontrado
+
+19/11/2009:
+    - Sistema funcional, recebe votos e nenhum BUG critico foi encontrado.

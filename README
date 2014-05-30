@@ -1,0 +1,127 @@
+##########################################################
+# SVS
+# Associacao Software Livre Santa Catarina
+# Sergio Cioban Filho - cioban@virtmasters.com
+# http://cioban.cc
+##########################################################
+
+O SVS e um Software Livre e esta licenciado sob a GPL,
+veja o arquivo LICENCE
+
+O SVS (Sistema de votacao SoLiSC) e um sistema que coleta
+a satisfacao de uma palestra, apresentacao, etc.
+
+O SVS é integrado com o papers (papers.softwarelivre.org)
+
+Seu principio de funcionamento eh simples, atraves de um hardware comum
+ligado na porta paralela, o sistema recebe os votos de 4 botoes diferentes
+e os grava em um banco de dados MySQL. Quatro outros pinos de saida sao utilizados
+para se conectar LEDs de sinalizacao nos botoes de votacao.
+Para saber para qual palestra o voto sera computado, o sistema leva em conta
+a data atual e realiza consulta no banco de dados do papers.
+
+
+**********************************************************************
+** ATENCAO
+ - Nao nos responsabilizamos por qualquer dano causado a
+   qualquer computador e/ou equipamento utilizado neste sistema.
+ - A montagem do hardware deve ser realizada por pessoas com nocoes
+   em eletronica e circuitos.
+ - Se a montagem do hardware for realizada corretamente nao havera
+   danos ao seu computador.
+**********************************************************************
+
+Codigo fonte:
+	- https://github.com/cioban/svs
+
+
+Requisitos para compilacao:
+	- glib-2.0
+	- gthread
+	- gtk+-2.0
+	- mysql-dev
+	- make
+
+Requisitos para utilizacao:
+	- Servidor de banco de dados MySQL ativo
+	- Servidor X (minimo) configurado.
+	- Computador com porta paralela habilitada
+	- uncluter (Para esconder o ponteiro do mouse)
+
+
+HARDWARE:
+    - Veja o diagrama utilizado na pasta doc/
+
+
+INSTALL:
+    - Verifique todas as dependencias (Se faltar algo, vai dar erro no comando make)
+    - execute: make && make install
+    - Configure as opcoes corretamente no arquivo: /etc/svs.conf
+    - Carregue o arquivo svs.sql no banco de dados MySQL
+
+
+RUNNIG:
+ ATENCAO: O SVS precisa de servidor X para ser executado
+    - Para executa-lo, pode-se iniciar o servidor X e rodar o binario: /usr/bin/svs , ou
+    colocar o binario /usr/bin/svs no arquivo .xinitrc do usuario root e executar o xinit em modo texto.
+    - Para esconder o ponteiro do mouse no servidor X, utilize o aplicativo unclutter.
+	- Desabilite a protecao do servidor X que deixa o monitor preto depois de algus minutos de inatividade.
+
+BUGS:
+    - Se iniciar o sistema com algum botao apertado, o mesmo nao funcionara!!!
+
+TODO:
+	- Fazer uma mini distro Linux para subir o sistema.
+    - Tirar do codigo frases e coisas especificas do SoLiSC (tornar configuravel)
+	- Não deixar a pessoa votar mais de uma vez.
+	  (Utilizar biometria, código de barras, RFID ou outra coisa para isso)
+    - Fazer o sistema funcionar sem a dependencia do papers, standalone ou configuravel.
+    - Arrumar a documentacao. Ta fraca... ;)
+    - Nao utilizar o servdor X (Utilizar Frame Buffer ou outro recurso)
+    - Adicionar outras protecoes no codigo. (Mysql retry connect, etc)
+	- Utilizar o SQLite ao inves do MySQL
+
+
+Project wishlist:
+    - Fazer hardware totalmente via USB
+    - Depois de fazer um hardware totalmente USB, ou fazer um hardware com sistema embarcado (sem PC) ou
+	  criar uma versão que rode em Android.
+	- Comprar um mini PC (estili thinclient) para rodar um miniLinux com o projeto.
+	  (http://www.dealextreme.com/details.dx/sku.41317)
+	  (http://www.dealextreme.com/details.dx/sku.37424)
+	- Comprar uma WebCam boa (1.3MP) com suporte a Linux para testar o reconhecimento facial.
+	  (http://www.dealextreme.com/details.dx/sku.23801)
+	- Comprar um tablet com Android para desenvolver uma versao embarcada.
+	  (http://www.dealextreme.com/details.dx/sku.47009)
+	  (http://www.dealextreme.com/details.dx/sku.41984)
+	  (http://www.dealextreme.com/details.dx/sku.44080)
+	  (http://www.dealextreme.com/details.dx/sku.44080)
+	- Comprar cartoes e um reader/writer RFID para testes com o controle de votacao.
+	  (http://www.dealextreme.com/details.dx/sku.10695)
+
+
+Este projeto salvou a minha vida. Quero ajudar, como eu faco?
+ Voce pode ajudar de algumas maneiras:
+	- Testando e reportando BUGS
+	- Codificando. Necessario conhecimento em C, GLIB, BD etc.
+	- Contribuido: Fazendo uma doação para a associação software livre para comprarmos hardware para testes.
+	- Comprando algum hardware citado no item Project whishlist e doando o mesmo para
+	  a Associacao Software Livre de Santa Catarina ou para o mantenedor do projeto (Sergio Cioban Filho).
+
+
+Duvidas, sugestoes, reclamacoes ou contribuicoes:
+    Sergio Cioban Filho - cioban@solisc.org.br
+
+Apoio ao projeto:
+ - Jeferson Cassol (jeferson.cassol@gmail.com): exemplos e auxilio de codigos em C com glib
+ - Bruno Machado Soares (bm.soares@hotmail.com): Boas praticas de programacao e auxilio nos codigos
+ - Douglas Conrad (conrad@opens.com.br): Idealizacao do sistema
+ - Alexandre Machado (axmachado@gmail.com): Idealizacao do sistema, auxilio com o hardware e diversas ideias.
+
+
+Links Interessantes:
+http://ffalcone.com/partest/partest.php
+http://www.rogercom.com/pparalela/introducao.htm
+http://www.rogercom.com/pparalela/ControlLinux.htm
+http://www.doctort.org/adam/nerd-notes/disabling-screen-blanking-in-xorg.html
+

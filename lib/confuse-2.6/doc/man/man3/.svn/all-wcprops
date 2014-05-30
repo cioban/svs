@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3
+END
+cfg_value_t.3
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3/cfg_value_t.3
+END
+cfg_t.3
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3/cfg_t.3
+END
+cfg_opt_t.3
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3/cfg_opt_t.3
+END
+confuse.h.3
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3/confuse.h.3
+END
+cfg_defvalue_t.3
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/doc/man/man3/cfg_defvalue_t.3
+END

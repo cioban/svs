@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src
+END
+lexer.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/lexer.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/Makefile.in
+END
+confuse.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/confuse.c
+END
+confuse.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/confuse.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/Makefile.am
+END
+lexer.l
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/src/lexer.l
+END

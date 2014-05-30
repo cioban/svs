@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po
+END
+Rules-quot
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/Rules-quot
+END
+insert-header.sin
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/insert-header.sin
+END
+fr.po
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/fr.po
+END
+remove-potcdate.sin
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/remove-potcdate.sin
+END
+Makefile.in.in
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/Makefile.in.in
+END
+fr.gmo
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/fr.gmo
+END
+POTFILES.in
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/POTFILES.in
+END
+stamp-po
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/stamp-po
+END
+en@quot.header
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/en@quot.header
+END
+LINGUAS
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/LINGUAS
+END
+quot.sed
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/quot.sed
+END
+boldquot.sed
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/boldquot.sed
+END
+en@boldquot.header
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/en@boldquot.header
+END
+confuse.pot
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/confuse.pot
+END
+sv.po
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/sv.po
+END
+sv.gmo
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/sv.gmo
+END
+Makevars
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/po/Makevars
+END

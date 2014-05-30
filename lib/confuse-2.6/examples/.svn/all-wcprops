@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples
+END
+ftpconf.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/ftpconf.c
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/Makefile.in
+END
+reread.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/reread.c
+END
+reread.conf
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/reread.conf
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/Makefile.am
+END
+simple.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/simple.c
+END
+simple.conf
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/simple.conf
+END
+ftp.conf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3/trunk/lib/confuse-2.6/examples/ftp.conf
+END
